@@ -1,0 +1,267 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>WiFi Hotspot Abos</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown>
+					<textarea data-template>
+						# Hotspot Abos
+				
+						Wie funktionieren diese (und wie viel Frefunk steckt drin)?
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## Inhalt
+						 - Was ist das überhaupt?
+						 - Hardware
+						 - Software
+						 - Infrastruktur
+						 - Billing
+						 - Fazit
+					</textarea>
+				</section>
+				<section>
+					<section data-markdown>
+						<textarea data-template>
+							## Was ist das überhaupt?
+							- Störerhaftung <!-- .element: class="fragment" -->
+							- VPN Provider <!-- .element: class="fragment" -->
+						</textarea>
+					</section>
+					<section data-markdown>
+						<textarea data-template>
+							## Was ist das überhaupt?
+							 - WiFi Router
+							   - ca. 50 bis 100 Euro
+							 - VPN Abo <!-- .element: class="fragment" -->
+							   - 10 Euro pro Monat
+						</textarea>
+					</section>
+					<section data-markdown>
+						<textarea data-template>
+							## Was ist das überhaupt?
+							- Zielgruppe
+							  - Kleine Hotels
+							  - Restaurants
+							  - Cafes
+						</textarea>
+					</section>
+					<section data-markdown>
+						<textarea data-template>
+							## Lieferumfang
+							<img src="/img/lieferumfang.jpg" width="500">
+						</textarea>
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
+						<textarea data-template>
+							## Hardware
+							- TP-Link TL-WR841N <!-- .element: class="fragment" -->
+							  - Kein Regiocode
+							  - Nicht andersweitig modifiziert
+							- TP-Link TL-WR1043ND <!-- .element: class="fragment" -->
+							- TP-Link Archer C59 <!-- .element: class="fragment" -->
+							- TP-Link Archer C7 <!-- .element: class="fragment" -->
+						</textarea>
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
+						<textarea data-template>
+							## Software
+							- OpenWrt 15.05 Chaos Calmer <!-- .element: class="fragment" -->
+							  - Konsole deaktiviert <!-- .element: class="fragment" -->
+							- LuCI (Webinterface) <!-- .element: class="fragment" -->
+							- batman-adv <!-- .element: class="fragment" -->
+							- fastd <!-- .element: class="fragment" -->
+							  - Kein Mesh-Protokoll <!-- .element: class="fragment" -->
+							  - Plain-IP <!-- .element: class="fragment" -->
+						</textarea>
+					</section>
+					<section data-markdown>
+						<textarea data-template>
+							## Webinterface
+							<img src="/img/status.png" width="700"><br/>
+							Statusseite
+						</textarea>
+					</section>
+					<section data-markdown>
+						<textarea data-template>
+							## Webinterface
+							<img src="/img/wireless.png" width="700"><br/>
+							WiFi Einstellungen
+						</textarea>
+					</section>
+					<section data-markdown>
+						<textarea data-template>
+							## Webinterface
+							<img src="/img/pin.png" width="700"><br/>
+							PIN
+						</textarea>
+					</section>
+					<section data-markdown>
+						<textarea data-template>
+							## Webinterface
+							<img src="/img/network.png" width="700"><br/>
+							Netzwerkeinstellungen
+						</textarea>
+					</section>
+					<section data-markdown>
+						<textarea data-template>
+							## Provisionierung
+							- Shell-Script
+							- Tunnel-IP
+							- Jugendschutz (2.99 p.M.) <!-- .element: class="fragment" -->
+							  - DHCP DNS-Server-Option <!-- .element: class="fragment" -->
+							  - OpenDNS statt Google DNS <!-- .element: class="fragment" -->
+							  - Port 53 blockiert <!-- .element: class="fragment" -->
+						</textarea>
+					</section>
+					<section data-markdown>
+						<textarea data-template>
+							## Provisionierung
+							- User-PIN
+							  - Wird dem Nutzer mitgeteilt
+							  - Benötigt für custom LuCI (Webinterface)
+						</textarea>
+					</section>
+					<section data-markdown>
+						<textarea data-template>
+							## Provisionierung
+							- Root-Passwort
+							  - Wird dem Nutzer NICHT mitgeteilt
+							  - Befindet sich plain im Flash
+							  - Erlaubt SSH / LuCI aus jedem Netz (Webinterface) <!-- .element: class="fragment" -->
+						</textarea>
+					</section>
+					<section data-markdown>
+						<textarea data-template>
+							## Betriebsmodi
+							- Router-Mode <!-- .element: class="fragment" -->
+							  - DHCP Server am LAN
+							- Repeater-Mode <!-- .element: class="fragment" -->
+							  - DHCP Client am LAN
+						</textarea>
+					</section>
+					<section data-markdown>
+						<textarea data-template>
+							## Repeater-Mode
+							- batman-adv auf dem Gerät vorhanden
+							  - Wireless mesh konfiguriert, allerdings deaktiviert <!-- .element: class="fragment" -->
+							  - Remote aktivierbar (SSH-Key / Root-Passwort) <!-- .element: class="fragment" -->
+						</textarea>
+					</section>
+					<section data-markdown>
+						<textarea data-template>
+							## Repeater-Mode
+							- WDS für Repeaterbetrieb <!-- .element: class="fragment" -->
+							  - SSID "PRIVAT Beschuetzerbox.de" <!-- .element: class="fragment" -->
+							  - WPA2-PSK well-known <!-- .element: class="fragment" -->
+							  - Vom Nutzer nicht veränderbar <!-- .element: class="fragment" -->
+						</textarea>
+					</section>
+					<section data-markdown>
+						<textarea data-template>
+							## Netzwerk
+							<img src="/img/network_diagram.png" width="800">
+						</textarea>
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
+						<textarea data-template>
+							## Infrastruktur
+							- VPN Endpunkte werden von Listserver geladen <!-- .element: class="fragment" -->
+							- Identischer fastd-Key auf jedem Gateway <!-- .element: class="fragment" -->
+						</textarea>
+					</section>
+					<section data-markdown>
+						<textarea data-template>
+							## Infrastruktur
+							- Ubuntu Server
+							- fastd v17
+							- Leaseweb, Hetzner
+						</textarea>
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
+						<textarea data-template>
+							## Billing
+							- fastd-secret <!-- .element: class="fragment" -->
+							  - Identisch für jedes Gerät <!-- .element: class="fragment" -->
+							  - Kein Billing möglich <!-- .element: class="fragment" -->
+							- Billing über IP-Adresse <!-- .element: class="fragment" -->
+							  - Forwarding Rule Gatewayseitig
+						</textarea>
+					</section>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## Zusammenfassung
+						 - Ähnlicher Software-Stack <!-- .element: class="fragment" -->
+						 - Wurzeln aus dem Freifunk-Umfeld <!-- .element: class="fragment" -->
+						 - Kein Fokus auf Mesh <!-- .element: class="fragment" -->
+						 - Kein eingebauter Update-Mechanismus <!-- .element: class="fragment" -->
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## Fragen
+					</textarea>
+				</section>
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				width: 1600,
+				height: 900,
+				controls: false,
+				transition: 'convex',
+
+				// Factor of the display size that should remain empty around the content
+				margin: 0.1,
+
+				// Bounds for smallest/largest possible scale to apply to content
+				minScale: 0.2,
+				maxScale: 1.5,
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
