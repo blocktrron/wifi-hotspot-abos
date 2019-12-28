@@ -1,0 +1,217 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>WiFi Hotspot Abos</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown>
+					<textarea data-template>
+						# Hotspot Abos
+				
+						Wie funktionieren diese (und wie viel Frefunk steckt drin)?
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## Inhalt
+						 - Was ist das überhaupt?
+						 - Hardware
+						 - Software
+						 - Infrastruktur
+						 - Billing
+						 - Fazit
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## Was ist das überhaupt?
+						 - Störerhaftung
+						 - VPN Provider
+						 - Zielgruppe
+						   - Kleine Hotels
+						   - Restaurants
+						   - Cafes
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## Was ist das überhaupt?
+						 - WiFi Router
+						   - TP-Link TL-WR841N
+						   - ca. 100 Euro
+						 - VPN Abo
+						   - 10€ p. Monat
+						   - Laufzeit 2 Jahre
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## Lieferumfang
+						<img src="/img/lieferumfang.jpg" width="500">
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## Hardware
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## Hardware
+						 - TP-Link TL-WR841N v11 (TPL)
+						   - Kein Regio-code
+						   - Nicht andersweitig modifiziert
+						 - TP-Link TL-WR1043ND
+						 - TP-Link Archer C59
+						 - TP-Link Archer C7
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## Software
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## Software
+						 - OpenWrt 15.05 Chaos Calmer
+						   - Konsole deaktiviert
+						 - LuCI (Webinterface)
+						 - fastd
+						 - batman-adv
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## Provisionierung
+						 - Über ein Shell-Script
+						 - Jugendschutz (2.99 p.M.)
+						   - DHCP DNS-Server-Option
+						   - OpenDNS statt Google DNS
+						 - Tunnel-IP
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## Provisionierung
+						 - User-Passwort
+						   - Wird dem Nutzer mitgeteilt
+						   - Benötigt für custom LuCI (Webinterface)
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## Provisionierung
+						 - Root-Passwort
+						   - Wird dem Nutzer NICHT mitgeteilt
+						   - Befindet sich allerdings plain im RootFS
+						   - Erlaubt SSH / LuCI aus jedem Netz (Webinterface)
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## Betriebsmodi
+						 - Router-Mode
+						   - DHCP Server am LAN
+						 - Repeater-Mode
+						   - DHCP Client am LAN
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## Repeater-Mode
+						 - batman-adv auf dem Gerät vorhanden
+						   - Wireless mesh konfiguriert, allerdings deaktiviert
+						   - Remote aktivierbar (SSH-Key / Root-Passwort)
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## Netzwerk
+						TODO: Skizze
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## Infrastruktur
+						 - VPN Endpunkte werden von Listserver geladen
+						 - Weight pro Endpunkt
+						 - Identischer fastd-Key auf jedem Gateway
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## Infrastruktur
+						 - Ubuntu Server
+						 - fastd v17
+						 - Leaseweb, Hetzner
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## Billing
+						 - fastd-secret
+						   - Identisch für jedes Gerät
+						   - Kein Billing möglich
+						 - Billing über IP-Adresse
+						   - Forwarding Rule Gatewayseitig
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## Zusammenfassung
+						 - Ähnlicher Software-Stack
+						 - Kein Fokus auf Mesh
+						 - Kein eingebauter Update-Mechanismus
+					</textarea>
+				</section>
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				width: 1600,
+				height: 900,
+
+				// Factor of the display size that should remain empty around the content
+				margin: 0.1,
+
+				// Bounds for smallest/largest possible scale to apply to content
+				minScale: 0.2,
+				maxScale: 1.5,
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
